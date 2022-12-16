@@ -5,7 +5,7 @@ import MainHeader from "./MainHeader";
 import NavLinks from "./NavLinks";
 import SideDrawer from "./SideDrawer";
 import styles from "./MainNavigation.module.css";
-import Backdrop from "../components/UIElements/Backdrop";
+import Backdrop from "../UIElements/Backdrop";
 
 const MainNavigation = () => {
   const [drawerIsOpen, SetDrawerIsOpen] = useState(false);
