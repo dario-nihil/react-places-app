@@ -34,8 +34,10 @@ const PlaceItem = (props: IPlace) => {
           overlayProps={{
             header: address,
             contentClass: "place-item__modal-content",
+            contentStyle: { padding: "0" },
             footerClass: "place-item__modal-actions",
             footer: <Button onClick={closeMapHandler}>CLOSE</Button>,
+            footerStyle: { textAlign: "right" },
           }}
         >
           <div className={styles["map-container"]}>

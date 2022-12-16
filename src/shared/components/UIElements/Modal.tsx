@@ -4,7 +4,6 @@ import { CSSTransition } from "react-transition-group";
 import Backdrop from "./Backdrop";
 import { FormEvent } from "react";
 import styles from "./Modal.module.css";
-import { ChildProcess } from "child_process";
 
 type ModalOverlayProps = {
   className?: string;
@@ -12,9 +11,11 @@ type ModalOverlayProps = {
   header: string;
   headerClass?: string;
   contentClass?: string;
+  contentStyle: React.CSSProperties;
   children?: React.ReactNode;
   footerClass?: string;
   footer: React.ReactNode;
+  footerStyle: React.CSSProperties;
   onSubmit?: (event: FormEvent) => void;
 };
 
@@ -27,8 +28,10 @@ const ModalOverlay = (props: ModalOverlayProps) => {
     style,
     children,
     contentClass,
+    contentStyle,
     footerClass,
     footer,
+    footerStyle,
   } = props;
 
   const content = (
@@ -41,10 +44,16 @@ const ModalOverlay = (props: ModalOverlayProps) => {
           onSubmit ? onSubmit : (event: FormEvent) => event.preventDefault
         }
       >
-        <div className={`${styles["modal__content"]} ${contentClass}`}>
+        <div
+          className={`${styles["modal__content"]} ${contentClass}`}
+          style={contentStyle}
+        >
           {children}
         </div>
-        <footer className={`${styles["modal__footer"]} ${footerClass}`}>
+        <footer
+          className={`styles["modal__footer"] ${footerClass}`}
+          style={footerStyle}
+        >
           {footer}
         </footer>
       </form>
