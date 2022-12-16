@@ -1,6 +1,7 @@
 import UserItem from "./UserItem";
 import IUser from "../../shared/IUser";
 import styles from "./UserList.module.css";
+import Card from "../../shared/components/UIElements/Card";
 
 type AppPorps = {
   items: IUser[];
@@ -10,7 +11,9 @@ const UserList = (props: AppPorps) => {
   if (items.length === 0) {
     return (
       <div className="center">
-        <h2>No users found.</h2>
+        <Card>
+          <h2>No users found.</h2>
+        </Card>
       </div>
     );
   }
