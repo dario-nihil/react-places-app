@@ -10,30 +10,27 @@ import Backdrop from "../components/UIElements/Backdrop";
 const MainNavigation = () => {
   const [drawerIsOpen, SetDrawerIsOpen] = useState(false);
 
-  const openDrawer = () => {
-    console.log("Open Drawer");
+  const openDrawerHandler = () => {
     SetDrawerIsOpen(true);
   };
 
-  const closeDrawer = () => {
-    console.log("Close Drawer");
+  const closeDrawerHandler = () => {
     SetDrawerIsOpen(false);
   };
 
   return (
     <>
-      {drawerIsOpen && <Backdrop onClick={closeDrawer} />}
-      {drawerIsOpen && (
-        <SideDrawer>
-          <nav className={styles["main-navigation__drawer-nav"]}>
-            <NavLinks />
-          </nav>
-        </SideDrawer>
-      )}
+      {drawerIsOpen && <Backdrop onClick={closeDrawerHandler} />}
+      <SideDrawer show={drawerIsOpen} onClose={closeDrawerHandler}>
+        <nav className={styles["main-navigation__drawer-nav"]}>
+          <NavLinks />
+        </nav>
+      </SideDrawer>
+
       <MainHeader>
         <button
           className={styles["main-navigation__menu-btn"]}
-          onClick={openDrawer}
+          onClick={openDrawerHandler}
         >
           <span />
           <span />
