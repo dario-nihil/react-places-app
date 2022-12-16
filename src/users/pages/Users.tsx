@@ -1,4 +1,4 @@
-import IUser from "../../shared/IUser";
+import IUser from "../../shared/interfaces/IUser";
 import UserList from "../components/UserList";
 
 const Users = () => {

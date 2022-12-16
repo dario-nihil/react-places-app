@@ -1,5 +1,5 @@
 import UserItem from "./UserItem";
-import IUser from "../../shared/IUser";
+import IUser from "../../shared/interfaces/IUser";
 import styles from "./UserList.module.css";
 import Card from "../../shared/components/UIElements/Card";
 
