@@ -5,6 +5,7 @@ import styles from "./PlaceItem.module.css";
 import Card from "../../shared/components/UIElements/Card";
 import Button from "../../shared/components/FormElements/Button";
 import Modal from "../../shared/components/UIElements/Modal";
+import Maps from "../../shared/components/UIElements/Maps";
 
 const PlaceItem = (props: IPlace) => {
   const [showMap, setShowMap] = useState(false);
@@ -37,11 +38,11 @@ const PlaceItem = (props: IPlace) => {
             contentStyle: { padding: "0" },
             footerClass: "place-item__modal-actions",
             footer: <Button onClick={closeMapHandler}>CLOSE</Button>,
-            footerStyle: { textAlign: "right" },
+            footerStyle: { textAlign: "right", marginBottom: "1rem" },
           }}
         >
           <div className={styles["map-container"]}>
-            <h2>THE MAP!</h2>
+            <Maps zoom={16} center={{ ...coordinate }} />
           </div>
         </Modal>
       )}
