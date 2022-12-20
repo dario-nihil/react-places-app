@@ -6,7 +6,7 @@ import {
   VALIDATOR_MINLENGTH,
   VALIDATOR_REQUIRE,
 } from "../../shared/utli/validators";
-import styles from "./NewPlace.module.css";
+import styles from "./PlaceForm.module.css";
 
 type FormState = {
   inputs: {

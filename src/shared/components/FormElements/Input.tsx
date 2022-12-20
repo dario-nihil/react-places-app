@@ -17,12 +17,6 @@ type ACTION_TYPE =
     }
   | { type: "TOUCH" };
 
-const initialState: InputState = {
-  value: "",
-  isValid: false,
-  isTouched: false,
-};
-
 const inputReducer = (state: InputState, action: ACTION_TYPE): InputState => {
   switch (action.type) {
     case "CHANGE":
@@ -51,6 +45,8 @@ type InputProps = {
   errorText?: string;
   validators: [{ type: string; val?: number }];
   onInput: (id: string, value: string, isValid: boolean) => void;
+  inputValue?: string;
+  inputIsValid?: boolean;
 };
 
 const Input = (props: InputProps) => {
@@ -64,7 +60,15 @@ const Input = (props: InputProps) => {
     errorText,
     validators,
     onInput,
+    inputValue,
+    inputIsValid,
   } = props;
+
+  const initialState: InputState = {
+    value: inputValue || "",
+    isValid: inputIsValid || false,
+    isTouched: false,
+  };
 
   const [inputsState, dispatch] = useReducer(inputReducer, initialState);
 
