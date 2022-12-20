@@ -1,6 +1,8 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Button from "../../shared/components/FormElements/Button";
 
+import Button from "../../shared/components/FormElements/Button";
+import Card from "../../shared/components/UIElements/Card";
 import { useForm } from "../../shared/hooks/form-hook";
 import Input from "../../shared/components/FormElements/Input";
 import IPlace from "../../shared/interfaces/IPlace";
@@ -33,7 +35,7 @@ const DUMMY_PLACES: IPlace[] = [
   {
     id: "p2",
     creatorId: "u2",
-    title: "Empire State Building",
+    title: "Emp. State Building",
     description: "One of the most famous sky scrapers in the world!",
     imageUrl:
       "https://marvel-b1-cdn.bc0a.com/f00000000179470/www.esbnyc.com/sites/default/files/styles/small_feature/public/2022-06/iStock-937427130%20%281%29.jpg?itok=osCyvhw5",
@@ -45,10 +47,23 @@ const DUMMY_PLACES: IPlace[] = [
   },
 ];
 
-const UpdatePlace = () => {
-  const placeId = useParams<UpdatedPlaceParam>().placeId;
+let initialFormState: IFormState = {
+  inputs: {
+    title: {
+      value: "",
+      isValid: false,
+    },
+    description: {
+      value: "",
+      isValid: false,
+    },
+  },
+  isValid: false,
+};
 
-  const identifiedPlace = DUMMY_PLACES.find((place) => place.id === placeId);
+const UpdatePlace = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const placeId = useParams<UpdatedPlaceParam>().placeId;
 
   /**
    * #FIXME
@@ -56,21 +71,33 @@ const UpdatePlace = () => {
    * because cannot use a hook conditionally limitation rule
    */
 
-  const initialFormState: IFormState = {
-    inputs: {
-      title: {
-        value: identifiedPlace!.title,
-        isValid: true,
-      },
-      description: {
-        value: identifiedPlace!.description,
-        isValid: true,
-      },
-    },
-    isValid: true,
-  };
+  const [formState, inputHandler, setFormData] = useForm(
+    initialFormState,
+    initialFormState.isValid
+  );
 
-  const [formState, inputHandler] = useForm(initialFormState, true);
+  const identifiedPlace = DUMMY_PLACES.find((place) => place.id === placeId);
+
+  useEffect(() => {
+    if (identifiedPlace) {
+      initialFormState = {
+        inputs: {
+          title: {
+            value: identifiedPlace!.title,
+            isValid: true,
+          },
+          description: {
+            value: identifiedPlace!.description,
+            isValid: true,
+          },
+        },
+        isValid: true,
+      };
+
+      setFormData(initialFormState.inputs, initialFormState.isValid);
+      setIsLoading(false);
+    }
+  }, [identifiedPlace, setFormData]);
 
   const placeUpdateSubmitHandler = (event: React.FormEvent) => {
     event.preventDefault();
@@ -80,7 +107,17 @@ const UpdatePlace = () => {
   if (!identifiedPlace) {
     return (
       <div className="center">
-        <h2>Could not find place!</h2>
+        <Card>
+          <h2>Could not find place!</h2>
+        </Card>
+      </div>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <div className="center">
+        <h2>Loading...</h2>
       </div>
     );
   }

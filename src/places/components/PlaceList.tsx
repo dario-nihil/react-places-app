@@ -1,6 +1,7 @@
 import Card from "../../shared/components/UIElements/Card";
 import PlaceItem from "./PlaceItem";
 import IPlace from "../../shared/interfaces/IPlace";
+import Button from "../../shared/components/FormElements/Button";
 import styles from "./PlaceList.module.css";
 
 type AppProps = {
@@ -14,7 +15,7 @@ const PlaceList = (props: AppProps) => {
       <div className={`${styles["place-list"]} center`}>
         <Card>
           <h2>No places found. Maybe create one?</h2>
-          <button>Sahre Place</button>
+          <Button to="/places/new">Share Place</Button>
         </Card>
       </div>
     );
