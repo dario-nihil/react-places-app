@@ -45,8 +45,8 @@ type InputProps = {
   errorText?: string;
   validators: [{ type: string; val?: number }];
   onInput: (id: string, value: string, isValid: boolean) => void;
-  inputValue?: string;
-  inputIsValid?: boolean;
+  initialValue?: string;
+  initialIsValid?: boolean;
 };
 
 const Input = (props: InputProps) => {
@@ -60,13 +60,13 @@ const Input = (props: InputProps) => {
     errorText,
     validators,
     onInput,
-    inputValue,
-    inputIsValid,
+    initialValue,
+    initialIsValid,
   } = props;
 
   const initialState: InputState = {
-    value: inputValue || "",
-    isValid: inputIsValid || false,
+    value: initialValue || "",
+    isValid: initialIsValid || false,
     isTouched: false,
   };
 
