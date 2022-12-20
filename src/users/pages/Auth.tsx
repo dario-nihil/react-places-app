@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 
+import { AuthContext } from "../../shared/context/auth-context";
 import Card from "../../shared/components/UIElements/Card";
 import Button from "../../shared/components/FormElements/Button";
 import { useForm } from "../../shared/hooks/form-hook";
@@ -28,6 +29,7 @@ const initialFormState: IFormState = {
 };
 
 const Auth = () => {
+  const authCtx = useContext(AuthContext);
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [formState, inputHandler, setFormData] = useForm(
     initialFormState,
@@ -37,6 +39,7 @@ const Auth = () => {
   const authSubmitHandler = (event: React.FormEvent) => {
     event.preventDefault();
     console.log(formState.inputs);
+    authCtx?.login();
   };
 
   const switchModeHandler = () => {
