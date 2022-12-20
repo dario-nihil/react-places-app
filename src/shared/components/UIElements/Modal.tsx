@@ -11,11 +11,11 @@ type ModalOverlayProps = {
   header: string;
   headerClass?: string;
   contentClass?: string;
-  contentStyle: React.CSSProperties;
+  contentStyle?: React.CSSProperties;
   children?: React.ReactNode;
   footerClass?: string;
   footer: React.ReactNode;
-  footerStyle: React.CSSProperties;
+  footerStyle?: React.CSSProperties;
   onSubmit?: (event: FormEvent) => void;
 };
 
