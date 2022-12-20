@@ -11,6 +11,10 @@ const formReducer = (
     case "INPUT_CHANGE":
       let formIsValid = true;
       for (const inputId in state.inputs) {
+        if (inputId === "name" && !state.inputs[inputId]) {
+          continue;
+        }
+
         if (inputId === action.inputId) {
           formIsValid = formIsValid && action.isValid;
         } else {
@@ -19,7 +23,8 @@ const formReducer = (
             inputId === "description" ||
             inputId === "address" ||
             inputId === "email" ||
-            inputId === "password"
+            inputId === "password" ||
+            inputId === "name"
           ) {
             formIsValid = formIsValid && state.inputs[inputId]!.isValid;
           }

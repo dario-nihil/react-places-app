@@ -20,6 +20,10 @@ interface IFormState {
       value: string;
       isValid: boolean;
     };
+    name?: {
+      value: string;
+      isValid: boolean;
+    };
   };
   isValid: boolean;
 }
