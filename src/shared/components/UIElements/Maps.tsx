@@ -1,6 +1,5 @@
 import { LatLngExpression } from "leaflet";
-import { useRef, useEffect } from "react";
-import { MapContainer, TileLayer, Marker, useMap, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
 import ICoord from "../../interfaces/ICoord";
 import styles from "./Maps.module.css";
@@ -15,19 +14,11 @@ type MapProps = {
 const Maps = (props: MapProps) => {
   const { className, style, center, zoom } = props;
   const position = Object.values(center) as LatLngExpression;
-  console.log(position);
-
-  const mapRef = useRef<HTMLDivElement>(null);
 
   return (
-    // <div
-    //   id="map"
-    //   ref={mapRef}
-    //   className={`${styles.map} ${className}`}
-    //   style={style}
-    // ></div>
     <MapContainer
       className={`${styles.map} ${className}`}
+      style={style}
       center={position}
       zoom={zoom}
       scrollWheelZoom={false}
