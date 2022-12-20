@@ -17,7 +17,9 @@ const formReducer = (
           if (
             inputId === "title" ||
             inputId === "description" ||
-            inputId === "address"
+            inputId === "address" ||
+            inputId === "email" ||
+            inputId === "password"
           ) {
             formIsValid = formIsValid && state.inputs[inputId]!.isValid;
           }
@@ -37,24 +39,6 @@ const formReducer = (
       return state;
   }
 };
-
-// const initialFormState: IFormState = {
-//   inputs: {
-//     title: {
-//       value: "",
-//       isValid: false,
-//     },
-//     description: {
-//       value: "",
-//       isValid: false,
-//     },
-//     address: {
-//       value: "",
-//       isValid: false,
-//     },
-//   },
-//   isValid: false,
-// };
 
 export const useForm = (
   initialInput: IFormState,

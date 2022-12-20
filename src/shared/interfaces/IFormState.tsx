@@ -1,14 +1,22 @@
 interface IFormState {
   inputs: {
-    title: {
+    title?: {
       value: string;
       isValid: boolean;
     };
-    description: {
+    description?: {
       value: string;
       isValid: boolean;
     };
     address?: {
+      value: string;
+      isValid: boolean;
+    };
+    email?: {
+      value: string;
+      isValid: boolean;
+    };
+    password?: {
       value: string;
       isValid: boolean;
     };

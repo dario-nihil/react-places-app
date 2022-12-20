@@ -29,7 +29,10 @@ const initialFormState: IFormState = {
 };
 
 const NewPlace = () => {
-  const [formState, inputHandler] = useForm(initialFormState, false);
+  const [formState, inputHandler] = useForm(
+    initialFormState,
+    initialFormState.isValid
+  );
 
   const placeSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
